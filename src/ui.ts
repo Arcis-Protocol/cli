@@ -14,9 +14,17 @@ export const dim = chalk.dim;
 
 // ── Banner ──
 export function banner() {
+  const W = 40;
+  const border = goldDim;
+  const pad = (s: string, vis: number) => s + " ".repeat(W - 4 - vis);
+
   console.log();
-  console.log(gold("  ARCIS"));
-  console.log(ivoryMuted("  The citadel of agent capital"));
+  console.log(border("  ┌" + "─".repeat(W - 2) + "┐"));
+  console.log(border("  │" + " ".repeat(W - 2) + "│"));
+  console.log(border("  │  ") + gold("ARCIS") + border(pad("", 5) + "│"));
+  console.log(border("  │  ") + ivoryMuted("The citadel of agent capital") + border(pad("", 28) + "│"));
+  console.log(border("  │" + " ".repeat(W - 2) + "│"));
+  console.log(border("  └" + "─".repeat(W - 2) + "┘"));
   console.log();
 }
 
