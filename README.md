@@ -1,4 +1,4 @@
-# @arcis/cli
+# Arcis CLI
 
 Arcis Protocol CLI — interact with agent vaults from your terminal.
 
