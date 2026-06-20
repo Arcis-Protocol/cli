@@ -1,33 +1,54 @@
 import chalk from "chalk";
 import Table from "cli-table3";
 
-// ── Arcis Brand Colors ──
+// ── Arcis Brand Palette (color ramp with hue shifting) ──
 export const gold = chalk.hex("#D4AF69");
 export const goldBright = chalk.hex("#E2C47E");
+export const goldHot = chalk.hex("#F0DCA0");
 export const goldDim = chalk.hex("#8A7A52");
+export const goldDeep = chalk.hex("#645228");
 export const ivory = chalk.hex("#f0ece4");
 export const ivoryMuted = chalk.hex("#8A8478");
 export const green = chalk.hex("#4ADE80");
 export const red = chalk.hex("#EF4444");
 export const blue = chalk.hex("#60A5FA");
 export const dim = chalk.dim;
-export const stone = chalk.hex("#0F0F12");
 
-// ── Banner ──
+// ── Truecolor helpers ──
+const fg = (r: number, g: number, b: number) => `\x1b[38;2;${r};${g};${b}m`;
+const bg = (r: number, g: number, b: number) => `\x1b[48;2;${r};${g};${b}m`;
+const RST = "\x1b[0m";
+
+// Brand color values for pixel art
+const C = {
+  gd: fg(100, 82, 40),   // gold deep (shadow)
+  gm: fg(150, 120, 55),  // gold mid
+  g:  fg(212, 175, 105), // gold
+  gb: fg(226, 196, 126), // gold bright
+  gh: fg(240, 220, 170), // gold hot (highlight)
+  iv: fg(240, 236, 228), // ivory
+  im: fg(138, 132, 120), // ivory muted
+  vd: fg(4, 4, 6),       // void
+  vb: bg(4, 4, 6),       // void bg
+};
+
+// ── Pixel Art Banner ──
 export function banner() {
-  const g = gold;
-  const gb = goldBright;
-  const iv = ivoryMuted;
+  const { gd, gm, g, gb, gh, iv, im, vd, vb } = C;
+
   console.log();
-  console.log(g("  ═══════════════════════════════════════════════"));
+  console.log(`  ${gd}───────────────────────────────────────────────────${RST}`);
   console.log();
-  console.log(g("              ╱") + gb("◆") + g("╲"));
-  console.log(g("           ╱") + gb("══") + g("╧") + gb("══") + g("╲"));
-  console.log(g("          ║") + "       " + g("║") + "     " + ivory.bold("A R C I S"));
-  console.log(g("          ║") + "       " + g("║") + "     " + iv("Protocol CLI  v0.2.0"));
-  console.log(g("          ╨") + "       " + g("╨") + "     " + iv("arcis.money"));
+  console.log(`              ${gm}▄▄${g}▄▄▄▄▄▄▄${gm}▄▄${RST}`);
+  console.log(`           ${gm}▄▄${g}██${gb}▓▓▓${gh}◆${gb}▓▓▓${g}██${gm}▄▄${RST}`);
+  console.log(`         ${gm}▄${g}██${gb}▓▓${vb}${vd}         ${RST}${gb}▓▓${g}██${gm}▄${RST}     ${iv}A R C I S${RST}`);
+  console.log(`        ${g}▐${gb}██${g}▌${vb}${vd}             ${RST}${g}▐${gb}██${g}▌${RST}    ${im}Protocol CLI  v0.2.0${RST}`);
+  console.log(`        ${gm}▐${g}██${gm}▌${vb}${vd}             ${RST}${gm}▐${g}██${gm}▌${RST}    ${im}arcis.money${RST}`);
+  console.log(`        ${gd}▐${gm}██${gd}▌${vb}${vd}             ${RST}${gd}▐${gm}██${gd}▌${RST}`);
+  console.log(`        ${gd}▐${gm}██${gd}▌${vb}${vd}             ${RST}${gd}▐${gm}██${gd}▌${RST}    ${gd}Tres Functiones.${RST}`);
+  console.log(`        ${gd}▀${gm}██${gd}▀▄▄▄▄▄▄▄▄▄▄▄▄▄${gd}▀${gm}██${gd}▀${RST}    ${gd}Unum Foedus.${RST}`);
   console.log();
-  console.log(g("  ═══════════════════════════════════════════════"));
+  console.log(`  ${gd}───────────────────────────────────────────────────${RST}`);
   console.log();
 }
 
@@ -59,7 +80,7 @@ export function divider() {
 // ── Section End ──
 export function sectionEnd() {
   console.log(gold("  │"));
-  console.log(gold("  └") + goldDim("─── Fortis Pecunia Machinae ─────────────"));
+  console.log(gold("  └") + goldDim("── Fortis Pecunia Machinae ──────────────"));
   console.log();
 }
 
@@ -80,7 +101,7 @@ export function info(msg: string) {
   console.log(gold("  │  ") + ivoryMuted(msg));
 }
 
-// ── Code Block (for ATI, MCP config) ──
+// ── Code Block ──
 export function code(lines: string[]) {
   console.log(gold("  │"));
   for (const line of lines) {
@@ -106,8 +127,7 @@ export function table(headers: string[], rows: string[][]) {
 
 // ── Formatters ──
 export function fmtUSDC(raw: bigint): string {
-  const n = Number(raw) / 1e6;
-  return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return "$" + (Number(raw) / 1e6).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 export function fmtRate(raw: bigint): string {
@@ -125,11 +145,22 @@ export function fmtAddr(addr: string, full = false): string {
   return addr.slice(0, 6) + "···" + addr.slice(-4);
 }
 
-// ── Progress Bar ──
+// ── Progress Bar (gradient gold) ──
 export function progressBar(pct: number, width = 30): string {
   const filled = Math.round((pct / 100) * width);
   const empty = width - filled;
-  return gold("█").repeat(filled) + dim("░").repeat(empty) + ivoryMuted(` ${pct.toFixed(1)}%`);
+  let bar = "";
+  for (let i = 0; i < filled; i++) {
+    // Gradient from deep gold to bright gold
+    const t = filled > 1 ? i / (filled - 1) : 0;
+    const r = Math.round(100 + t * 140);
+    const g = Math.round(82 + t * 138);
+    const b = Math.round(40 + t * 130);
+    bar += `${fg(r, g, b)}█${RST}`;
+  }
+  bar += dim("░").repeat(empty);
+  bar += ivoryMuted(` ${pct.toFixed(1)}%`);
+  return bar;
 }
 
 // ── Status Dot ──
