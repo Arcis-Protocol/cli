@@ -1,6 +1,6 @@
 # Arcis CLI
 
-The citadel from your terminal.
+The citadel from your terminal. 12 commands. Live on-chain data.
 
 ## Install
 
@@ -13,10 +13,10 @@ cd cli && npm install
 
 ```
 arcis status                  Full protocol overview (vault + credit + bonds)
-arcis vault status            Vault TVL, exchange rate, capacity
+arcis vault status            TVL, exchange rate, capacity, reserve/deployed
 arcis vault balance <addr>    Agent position — shares, value, wallet
 arcis vault deposit <amt>     Deposit USDC (-k privateKey)
-arcis vault withdraw [shares] Withdraw raUSDC (-k privateKey, -a for all)
+arcis vault withdraw [shares] Withdraw raUSDC (-k key, -a for all)
 arcis credit status           Lending pool, borrowed, utilization
 arcis credit tiers            ERC-8004 reputation tier table
 arcis credit health <id>      Check loan health
@@ -31,12 +31,12 @@ arcis sdk                     TypeScript SDK quick start
 
 | Repo | Description |
 |---|---|
-| [`core`](https://github.com/Arcis-Protocol/core) | Smart contracts — 116 tests |
+| [`core`](https://github.com/Arcis-Protocol/core) | Smart contracts — 17 contracts, 116 tests |
 | [`sdk`](https://github.com/Arcis-Protocol/sdk) | `@arcisprotocol/sdk` |
 | [`mcp`](https://github.com/Arcis-Protocol/mcp) | `@arcisprotocol/mcp` |
-| [`custos`](https://github.com/Arcis-Protocol/custos) | Autonomous keeper agent |
+| [`custos`](https://github.com/Arcis-Protocol/custos) | CUSTOS — autonomous keeper agent |
 | [`app`](https://github.com/Arcis-Protocol/app) | arcis.money |
 
 ---
 
-*ARCIS · Fortis Pecunia Machinae · MMXXVI*
+*ARCIS · CLI v0.2.0 · MMXXVI*
