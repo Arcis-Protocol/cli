@@ -5,7 +5,7 @@ export function showContracts() {
   const addr = getAddresses();
 
   ui.heading("DEPLOYED CONTRACTS");
-  ui.kv("Network", "Base Sepolia (84532)", ui.ivory);
+  ui.kv("Network", "Base Mainnet (8453)", ui.ivory);
   ui.kv("Explorer", addr.explorer, ui.blue);
   ui.spacer();
 

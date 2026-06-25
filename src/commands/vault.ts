@@ -28,7 +28,7 @@ export async function vaultStatus() {
 
     ui.heading("VAULT STATUS");
     ui.kv("Status", paused ? "⏸  PAUSED" : "●  ACTIVE", paused ? ui.red : ui.green);
-    ui.kv("Network", "Base Sepolia (84532)", ui.ivoryMuted);
+    ui.kv("Network", "Base Mainnet (8453)", ui.ivoryMuted);
     ui.kv("Contract", ui.fmtAddr(addr.vault), ui.goldDim);
     ui.spacer();
     ui.kv("Total Value Locked", ui.fmtUSDC(totalAssets), ui.gold);
