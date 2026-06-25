@@ -1,6 +1,6 @@
 # Arcis CLI
 
-The citadel from your terminal. 12 commands. Live on-chain data.
+The citadel from your terminal. 12 commands. Live on Base mainnet.
 
 ## Install
 
