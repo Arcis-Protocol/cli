@@ -1,10 +1,10 @@
 import { createPublicClient, createWalletClient, http, defineChain, type Address } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 
-const baseSepolia = defineChain({
+const base = defineChain({
   id: 8453, name: "Base",
   nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
-  rpcUrls: { default: { http: ["https://mainnet.base.org"] } },
+  rpcUrls: { default: { http: [process.env.BASE_RPC_URL || "https://mainnet.base.org"] } },
   blockExplorers: { default: { name: "Blockscout", url: "https://basescan.org" } },
 });
 
@@ -14,7 +14,10 @@ const ADDRESSES = {
   router: "0xd0c64f997ca9aa427f8834578bd7f0313f868e83" as Address,
   usdc: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" as Address,
   allocator: "0x7Fd5d7b49694858FCf143E0039e83cDB0196DD7A" as Address,
-  bondFactory: null as Address | null,
+  bondFactory: "0xeb65d8bb08e0ea4a6bb9162d53d1b444f99681ba" as Address,
+  identity: "0xaa4da295dd368c0f10128654af76e3f002e20e71" as Address,
+  strategyAave: "0x43626D6162Ccb12328B989BB228DaD2941F2F12a" as Address,
+  custosToken: "0xD7C479F720b0bC2FF1088A16D1c06C3e11C62882" as Address,
   explorer: "https://basescan.org",
 };
 
@@ -59,12 +62,12 @@ export const ERC20_ABI = [
 ] as const;
 
 export function getPublicClient() {
-  return createPublicClient({ chain: baseSepolia, transport: http() });
+  return createPublicClient({ chain: base, transport: http() });
 }
 
 export function getWalletClient(privateKey: string) {
   const account = privateKeyToAccount(privateKey as `0x${string}`);
-  return createWalletClient({ chain: baseSepolia, transport: http(), account });
+  return createWalletClient({ chain: base, transport: http(), account });
 }
 
 export function getAddresses() {

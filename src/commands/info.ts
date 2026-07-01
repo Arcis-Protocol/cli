@@ -84,3 +84,15 @@ export function showSdk() {
   ]);
   ui.sectionEnd();
 }
+
+
+export function showToken() {
+  console.log("\n  $CUSTOS Token\n");
+  console.log("  Contract:  0xD7C479F720b0bC2FF1088A16D1c06C3e11C62882");
+  console.log("  Network:   Base (8453)");
+  console.log("  Platform:  Virtuals Protocol");
+  console.log("");
+  console.log("  Basescan:  https://basescan.org/token/0xD7C479F720b0bC2FF1088A16D1c06C3e11C62882");
+  console.log("  Trade:     https://app.virtuals.io");
+  console.log("");
+}

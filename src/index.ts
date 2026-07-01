@@ -6,14 +6,14 @@ import { vaultStatus, vaultBalance, vaultDeposit, vaultWithdraw } from "./comman
 import { creditStatus, creditTiers, creditHealth } from "./commands/credit.js";
 import { bondStatus } from "./commands/bonds.js";
 import { showContracts } from "./commands/config.js";
-import { showMcp, showCustos, showSdk } from "./commands/info.js";
+import { showMcp, showCustos, showSdk, showToken } from "./commands/info.js";
 
 const program = new Command();
 
 program
   .name("arcis")
   .description("Arcis Protocol CLI — the citadel from your terminal")
-  .version("0.2.0")
+  .version("1.0.0")
   .hook("preAction", () => banner());
 
 // ── Full Status ──
@@ -87,5 +87,10 @@ program.command("custos")
 program.command("sdk")
   .description("TypeScript SDK — @arcisprotocol/sdk")
   .action(showSdk);
+
+program
+  .command("token")
+  .description("$CUSTOS token info — contract, links, Virtuals")
+  .action(showToken);
 
 program.parse();

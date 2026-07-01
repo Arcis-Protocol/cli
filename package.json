@@ -1,13 +1,13 @@
 {
-  "name": "@arcis/cli",
-  "version": "0.2.0",
-  "description": "Arcis Protocol CLI — interact with agent vaults from your terminal",
+  "name": "@arcisprotocol/cli",
+  "version": "1.0.0",
+  "description": "Arcis Protocol CLI \u2014 interact with agent vaults from your terminal",
   "type": "module",
   "bin": {
     "arcis": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format esm --dts --clean",
+    "build": "tsup src/index.ts --format esm --clean",
     "dev": "tsx src/index.ts"
   },
   "keywords": [
@@ -31,5 +31,23 @@
     "tsup": "^8.5.1",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Arcis-Protocol/cli.git"
+  },
+  "homepage": "https://arcis.money",
+  "bugs": {
+    "url": "https://github.com/Arcis-Protocol/cli/issues"
+  },
+  "author": "Arcis Protocol",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

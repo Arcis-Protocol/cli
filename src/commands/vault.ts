@@ -32,7 +32,7 @@ export async function vaultStatus() {
     ui.kv("Contract", ui.fmtAddr(addr.vault), ui.goldDim);
     ui.spacer();
     ui.kv("Total Value Locked", ui.fmtUSDC(totalAssets), ui.gold);
-    ui.kv("raUSDC Supply", (Number(totalSupply) / 1e6).toLocaleString("en-US", {maximumFractionDigits: 2}) + " raUSDC", ui.ivory);
+    ui.kv("raUSDC Supply", Number(totalSupply).toLocaleString("en-US") + " raUSDC", ui.ivory);
     ui.kv("Exchange Rate", totalSupply > 0n ? ui.fmtRate(rate) : "1.000000", ui.ivory);
     ui.spacer();
     ui.kv("Reserve (Liquid)", ui.fmtUSDC(reserve) + ` (${resPct.toFixed(1)}%)`, ui.blue);
